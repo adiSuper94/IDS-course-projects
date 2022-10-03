@@ -22,7 +22,7 @@ class IDSHashtable {
     this.n = n;
     this.k = k;
     this.c = c;
-    entries = new Entry[n];
+    this.entries = new Entry[n];
     this.salts = new int[k];
     for (int i = 0; i < k; i++) {
       this.salts[i] = (int) (Math.random() * Integer.MAX_VALUE);
@@ -78,7 +78,6 @@ class IDSHashtable {
           return 1;
         }
       } else {
-        System.out.println("TSNH 2");
         return this.recordFlow(flowId);
       }
     }
@@ -131,6 +130,16 @@ class IDSHashtable {
       }
     }
     return 0;
+  }
+
+  public int getFlowCount() {
+    int count = 0;
+    for (int i = 0; i < this.n; i++) {
+      if (this.entries[i] != null) {
+        count++;
+      }
+    }
+    return count;
   }
 
   private int[] multiHash(int flowId) {

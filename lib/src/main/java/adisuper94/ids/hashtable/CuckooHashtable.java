@@ -20,4 +20,8 @@ public class CuckooHashtable {
   public int getCount(int flowId) {
     return map.getCount(flowId);
   }
+
+  public int getFlowCount() {
+    return map.getFlowCount();
+  }
 }
