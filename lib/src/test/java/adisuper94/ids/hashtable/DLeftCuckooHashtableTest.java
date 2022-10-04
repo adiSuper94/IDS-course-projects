@@ -9,10 +9,10 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CuckooHashMapTest {
+public class DLeftCuckooHashtableTest {
   @Test
   void test() {
-    CuckooHashtable classUnderTest = new CuckooHashtable(1000, 3, 2);
+    DLeftCuckooHashtable classUnderTest = new DLeftCuckooHashtable(1000, 3, 2);
     Map<Integer, Integer> expected = new HashMap<>();
     for (int i = 0; i < 1000; i++) {
       int toss = (int) (Math.random() * 20);
@@ -47,7 +47,7 @@ public class CuckooHashMapTest {
     String out = "flow count: " + classUnderTest.getFlowCount() + "\n" + classUnderTest.print();
     System.out.print(classUnderTest.getFlowCount());
     assertEquals(classUnderTest.getFlowCount(), actualCount);
-    File outFile = new File("src/test/resources/cuckoo-out.txt");
+    File outFile = new File("src/test/resources/dleft-cuckoo-out.txt");
     FileOutputStream outputStream;
     try {
       outputStream = new FileOutputStream(outFile, false);

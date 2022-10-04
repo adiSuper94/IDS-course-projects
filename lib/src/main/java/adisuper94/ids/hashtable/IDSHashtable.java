@@ -15,13 +15,15 @@ class IDSHashtable {
   }
 
   private int n, k, c;
+  private boolean dleft;
   private Entry[] entries;
   private int[] salts;
 
-  public IDSHashtable(int n, int k, int c) {
+  public IDSHashtable(int n, int k, int c, boolean dlfeft) {
     this.n = n;
     this.k = k;
     this.c = c;
+    this.dleft = dlfeft;
     this.entries = new Entry[n];
     this.salts = new int[k];
     for (int i = 0; i < k; i++) {
@@ -145,10 +147,41 @@ class IDSHashtable {
   private int[] multiHash(int flowId) {
     int masterHash = Integer.hashCode(flowId);
     int[] hashes = new int[this.k];
-    for (int i = 0; i < k; i++) {
-      hashes[i] = masterHash ^ this.salts[i];
+    if (this.dleft) {
+      for (int i = 0; i < k; i++) {
+        hashes[i] = masterHash ^ this.salts[i];
+      }
+    } else {
+      int count = 0;
+      boolean[] saltMask = new boolean[this.k];
+      while (count < this.k) {
+        int id = (int) (Math.random() * (this.k));
+        if (saltMask[id] == false) {
+          saltMask[id] = true;
+          hashes[count] = masterHash ^ this.salts[id];
+          count++;
+        }
+      }
     }
     return hashes;
+  }
+
+  public String print() {
+    StringBuilder bob = new StringBuilder();
+    String delim = "";
+    bob.append("{");
+    for (int i = 0; i < this.n; i++) {
+      Entry entry = this.entries[i];
+      if (entry != null) {
+        bob.append(delim + entry.flowId + ": " + entry.count);
+      } else {
+        bob.append(delim + "0: 0");
+      }
+
+      delim = ", ";
+    }
+    bob.append("}");
+    return bob.toString();
   }
 
 }

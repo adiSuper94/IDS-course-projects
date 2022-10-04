@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class IDSHashtableTest {
   @Test
   void someLibraryMethodReturnsTrue() {
-    IDSHashtable classUnderTest = new IDSHashtable(10, 2, 2);
+    IDSHashtable classUnderTest = new IDSHashtable(10, 2, 2, true);
     classUnderTest.recordFlow(1);
     classUnderTest.recordFlow(1);
     assertEquals(2, classUnderTest.getCount(1));

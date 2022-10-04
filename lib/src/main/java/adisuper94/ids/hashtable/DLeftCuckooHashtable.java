@@ -1,10 +1,13 @@
 package adisuper94.ids.hashtable;
 
-public class MultiHashtable {
+public class DLeftCuckooHashtable {
   private IDSHashtable map;
 
-  public MultiHashtable(int n, int k) {
-    map = new IDSHashtable(n, k, 0, false);
+  public DLeftCuckooHashtable(int n, int k, int c) {
+    if (c > 3) {
+      throw new IllegalArgumentException("cuckoo level cannot be more than 2");
+    }
+    map = new IDSHashtable(n, k, c, true);
   }
 
   public int recordFlow(int flowId) {

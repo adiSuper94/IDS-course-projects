@@ -7,7 +7,7 @@ public class CuckooHashtable {
     if (c > 3) {
       throw new IllegalArgumentException("cuckoo level cannot be more than 2");
     }
-    map = new IDSHashtable(n, k, c);
+    map = new IDSHashtable(n, k, c, false);
   }
 
   public int recordFlow(int flowId) {
@@ -23,5 +23,9 @@ public class CuckooHashtable {
 
   public int getFlowCount() {
     return map.getFlowCount();
+  }
+
+  public String print() {
+    return this.map.print();
   }
 }
