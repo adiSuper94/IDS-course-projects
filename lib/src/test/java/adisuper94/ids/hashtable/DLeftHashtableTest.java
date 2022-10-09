@@ -12,7 +12,7 @@ import java.util.Map;
 public class DLeftHashtableTest {
   @Test
   void test() {
-    DLeftHashtable classUnderTest = new DLeftHashtable(1000, 3);
+    DLeftHashtable classUnderTest = new DLeftHashtable(1000, 4);
     Map<Integer, Integer> expected = new HashMap<>();
     for (int i = 0; i < 1000; i++) {
       int toss = (int) (Math.random() * 20);
